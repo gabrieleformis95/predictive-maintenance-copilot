@@ -1,0 +1,75 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data (too heavy / not redistributable)
+data/raw/
+data/processed/
+data/manuals/
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/manuals/.gitkeep
+
+# Models
+/models/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Vector store
+chroma_db/
+*.chroma
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Logs
+*.log
+logs/
+
+# Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Type checking
+.mypy_cache/
+.ruff_cache/
+
+# OS
+Thumbs.db

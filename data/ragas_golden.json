@@ -1,0 +1,34 @@
+[
+  {
+    "question": "What are the main causes of high exhaust gas temperature in a turbofan engine?",
+    "ground_truth": "High exhaust gas temperature (EGT) in turbofan engines is typically caused by turbine blade degradation, compressor fouling reducing efficiency, combustion chamber hot spots, excessive fuel flow, or inlet air distortion. Sensor readings for EGT (sensor_7) rising above baseline indicate thermal stress on turbine components."
+  },
+  {
+    "question": "How does compressor degradation affect turbofan engine sensor readings?",
+    "ground_truth": "Compressor degradation typically manifests as reduced pressure ratio (sensors op_setting_1, op_setting_2), increased fuel flow to maintain thrust, rising exhaust temperatures, and decreased fan speed stability. Physical fan outlet temperature (sensor_2) and total pressure (sensor_3) are key indicators."
+  },
+  {
+    "question": "What maintenance actions are recommended when anomalous vibration patterns are detected?",
+    "ground_truth": "When anomalous vibration patterns are detected, recommended actions include borescope inspection of fan and turbine blades for damage, balance check and correction, bearing inspection for wear, and review of sensor data trends for root cause identification before scheduling removal."
+  },
+  {
+    "question": "What does a sudden drop in fan outlet pressure indicate in a gas turbine?",
+    "ground_truth": "A sudden drop in fan outlet pressure (sensor_3) typically indicates fan blade damage or loss, inlet blockage or icing, compressor stall, or bearing failure. Immediate inspection and possible flight restriction are required."
+  },
+  {
+    "question": "How is Remaining Useful Life estimated for turbofan engines?",
+    "ground_truth": "Remaining Useful Life (RUL) estimation uses sensor trend analysis, degradation models, and historical run-to-failure data. Methods include physics-based degradation models, machine learning approaches on multivariate sensor windows, and threshold-based approaches comparing current sensor state to healthy baselines."
+  },
+  {
+    "question": "What sensor parameters are most predictive of turbofan engine failure?",
+    "ground_truth": "The most predictive sensors for turbofan failure include exhaust gas temperature (sensor_7, sensor_11), pressure ratios across compressor stages (sensor_2, sensor_3, sensor_4), fan speed deviations, and fuel flow (sensor_12). Multi-sensor fusion improves prediction accuracy significantly."
+  },
+  {
+    "question": "What inspection intervals are recommended for turbine blade monitoring?",
+    "ground_truth": "Turbine blade monitoring typically follows manufacturer-defined intervals based on flight cycles and hours. Hot section inspections (HSI) are performed every 3000-5000 cycles, with borescope inspections every 500-1000 cycles for high-stress operations. On-condition monitoring extends intervals when sensor data indicates healthy operation."
+  },
+  {
+    "question": "How does engine washing affect sensor baseline readings?",
+    "ground_truth": "Engine washing removes compressor fouling and typically results in improved pressure ratio, reduced EGT margin consumption, lower fuel flow for equivalent thrust, and restored sensor baselines. A post-wash baseline recalibration is recommended to update degradation monitoring thresholds."
+  }
+]

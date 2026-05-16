@@ -1,0 +1,35 @@
+# Hugging Face Spaces deployment.
+# Streamlit on 7860 (public), FastAPI on 8000 (internal).
+# Set GROQ_API_KEY as a Space secret.
+
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PATH="/home/app/.local/bin:${PATH}" \
+    LLM_PROVIDER=groq \
+    LLM_MODEL=llama-3.3-70b-versatile \
+    API_BASE_URL=http://localhost:8000
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd --create-home --uid 1000 app
+
+WORKDIR /home/app
+USER app
+
+COPY --chown=app:app pyproject.toml ./
+COPY --chown=app:app src ./src
+RUN pip install --user --no-cache-dir .
+
+COPY --chown=app:app data/raw/CMAPSSData ./data/raw/CMAPSSData
+COPY --chown=app:app scripts ./scripts
+
+RUN chmod +x scripts/start.sh
+
+EXPOSE 7860 8000
+
+CMD ["scripts/start.sh"]
