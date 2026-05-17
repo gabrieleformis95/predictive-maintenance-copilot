@@ -1,0 +1,37 @@
+{
+  "mean_faithfulness": 0.9166666666666666,
+  "per_question": [
+    {
+      "question": "What are the main causes of high exhaust gas temperature in a turbofan engine?",
+      "faithfulness": 1.0
+    },
+    {
+      "question": "How does compressor degradation affect turbofan engine sensor readings?",
+      "faithfulness": 1.0
+    },
+    {
+      "question": "What maintenance actions are recommended when anomalous vibration patterns are detected?",
+      "faithfulness": 1.0
+    },
+    {
+      "question": "What does a sudden drop in fan outlet pressure indicate in a gas turbine?",
+      "faithfulness": 1.0
+    },
+    {
+      "question": "How is Remaining Useful Life estimated for turbofan engines?",
+      "faithfulness": 0.3333333333333333
+    },
+    {
+      "question": "What sensor parameters are most predictive of turbofan engine failure?",
+      "faithfulness": 1.0
+    },
+    {
+      "question": "What inspection intervals are recommended for turbine blade monitoring?",
+      "faithfulness": 1.0
+    },
+    {
+      "question": "How does engine washing affect sensor baseline readings?",
+      "faithfulness": 1.0
+    }
+  ]
+}

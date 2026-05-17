@@ -67,6 +67,7 @@ Industrial sensor data is noisy and high-dimensional. Operators see anomaly aler
 | PR-AUC | **0.789** |
 | F1-optimal threshold | 0.344 |
 | Anomaly horizon | last 30 cycles before failure |
+| RAG faithfulness (RAGAS) | **0.917** |
 
 Model: LSTM autoencoder, hidden\_dim=128, latent\_dim=32, window\_size=30, trained 200 epochs on FD001 healthy cycles.
 
@@ -95,14 +96,14 @@ The pipeline routes to Ollama by default with Groq as cloud fallback. Set in `.e
 
 ```env
 LLM_PROVIDER=ollama          # ollama | groq | openai
-OLLAMA_MODEL=llama3.2
+LLM_MODEL=qwen2.5:7b
 GROQ_API_KEY=your_key_here   # optional fallback
 ```
 
 Pull the Ollama model before running:
 
 ```bash
-ollama pull llama3.2
+ollama pull qwen2.5:7b
 ```
 
 ## Tech stack
@@ -111,7 +112,7 @@ ollama pull llama3.2
 - **RAG**: LlamaIndex, ChromaDB, sentence-transformers, BM25 + RRF fusion
 - **LLM**: Ollama (local), Groq (cloud fallback), OpenAI (optional)
 - **Serving**: FastAPI, Streamlit
-- **MLOps**: MLflow, GitHub Actions CI
+- **MLOps**: MLflow, Evidently (drift monitoring), RAGAS (RAG evaluation), GitHub Actions CI
 
 ## Project layout
 
@@ -139,7 +140,7 @@ ollama pull llama3.2
 - [x] C-MAPSS data loader and preprocessing
 - [x] LSTM autoencoder training with MLflow tracking
 - [x] Anomaly evaluation: ROC-AUC 0.906, PR-AUC 0.789
-- [x] PDF ingestion pipeline → ChromaDB (273k chunks)
+- [x] PDF ingestion pipeline → ChromaDB (612k chunks)
 - [x] Hybrid retriever (BM25 + dense + RRF)
 - [x] Structured LLM prompt with output parser
 - [x] FastAPI endpoint with end-to-end pipeline
