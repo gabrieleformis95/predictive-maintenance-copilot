@@ -16,6 +16,7 @@ pinned: false
 [![Coverage](https://img.shields.io/badge/coverage-88%25-brightgreen.svg)](https://github.com/gabrieleformis95/predictive-maintenance-copilot/actions)
 [![Python](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Live demo](https://img.shields.io/badge/demo-HF%20Spaces-orange.svg)](https://huggingface.co/spaces/gabrieleformis/predictive-maintenance-copilot)
 
 ---
 
@@ -70,6 +71,16 @@ Industrial sensor data is noisy and high-dimensional. Operators see anomaly aler
 | RAG faithfulness (RAGAS) | **0.917** |
 
 Model: LSTM autoencoder, hidden\_dim=128, latent\_dim=32, window\_size=30, trained 200 epochs on FD001 healthy cycles.
+
+### PR Curve
+
+![PR Curve](docs/images/pr_curve.png)
+
+### Dashboard
+
+![Dashboard - sensor trajectories and anomaly score](docs/images/dashboard_1.png)
+
+![Dashboard - anomaly detail](docs/images/dashboard_2.png)
 
 ## Quick start
 
@@ -134,6 +145,18 @@ ollama pull qwen2.5:7b
 ├── Makefile
 └── .github/workflows/ci.yml
 ```
+
+## Pitfalls encountered
+
+- **Scaler data leakage** - initially fit the scaler on the full dataset including test cycles. Metrics looked better but the model had seen future data. Fixed by fitting only on healthy training cycles (RUL > threshold).
+- **Threshold sensitivity to anomaly horizon** - the F1-optimal threshold shifts significantly depending on how many cycles before failure you label as anomalous (h=30 vs h=50). Reported results use h=30; h=50 inflates recall at the cost of precision.
+- **ChromaDB persistence with embedding model changes** - upgrading the embedding model invalidates the existing vector store silently. Queries return results but recall drops. Requires full re-ingest after any model change.
+- **BM25 index rebuild on corpus change** - the BM25 index is not updated incrementally. Any change to the corpus (adding/removing documents) requires a full rebuild and deletion of the old index.
+- **ChromaDB size** - 612k chunks from ~250MB of PDFs produced an 8GB SQLite file. The binary embedding index is only ~1GB; the rest is stored document text. This made cloud deployment impractical without reducing the corpus or switching to a leaner vector store.
+
+## Hugging Face Space
+
+The [live demo](https://huggingface.co/spaces/gabrieleformis/predictive-maintenance-copilot) runs the full anomaly detection pipeline but disables the RAG explanation layer. The ChromaDB vector store built from the maintenance manuals is ~8GB — too large for HF Spaces free tier. Anomaly detection, sensor trajectories, and score timelines work normally. For the full pipeline including LLM explanations with manual citations, run locally following the Quick start above.
 
 ## Roadmap
 
