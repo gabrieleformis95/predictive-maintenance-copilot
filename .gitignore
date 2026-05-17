@@ -52,6 +52,9 @@ data/bm25_index/
 mlruns/
 mlartifacts/
 
+# Generated reports
+reports/*.html
+
 # Logs
 *.log
 logs/
