@@ -74,13 +74,13 @@ Model: LSTM autoencoder, hidden\_dim=128, latent\_dim=32, window\_size=30, train
 
 ### PR Curve
 
-![PR Curve](docs/images/pr_curve.png)
+![PR Curve](https://raw.githubusercontent.com/gabrieleformis95/predictive-maintenance-copilot/main/docs/images/pr_curve.png)
 
 ### Dashboard
 
-![Dashboard - sensor trajectories and anomaly score](docs/images/dashboard_1.png)
+![Dashboard - sensor trajectories and anomaly score](https://raw.githubusercontent.com/gabrieleformis95/predictive-maintenance-copilot/main/docs/images/dashboard_1.png)
 
-![Dashboard - anomaly detail](docs/images/dashboard_2.png)
+![Dashboard - anomaly detail](https://raw.githubusercontent.com/gabrieleformis95/predictive-maintenance-copilot/main/docs/images/dashboard_2.png)
 
 ## Quick start
 
