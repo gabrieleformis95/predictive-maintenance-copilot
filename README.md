@@ -13,7 +13,8 @@ pinned: false
 > End-to-end pipeline that detects equipment degradation from sensor data and **explains it in natural language** with citations to maintenance manuals. Built on NASA C-MAPSS turbofan engine data, with a Retrieval-Augmented Generation layer over public industrial maintenance documentation.
 
 [![CI](https://github.com/gabrieleformis95/predictive-maintenance-copilot/actions/workflows/ci.yml/badge.svg)](https://github.com/gabrieleformis95/predictive-maintenance-copilot/actions)
-[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Coverage](https://img.shields.io/badge/coverage-88%25-brightgreen.svg)](https://github.com/gabrieleformis95/predictive-maintenance-copilot/actions)
+[![Python](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
