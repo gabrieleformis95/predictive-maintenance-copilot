@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches: [main]
+    tags: ["v*.*.*"]
   pull_request:
     branches: [main]
 
@@ -51,5 +52,13 @@ jobs:
     needs: lint-and-test
     steps:
       - uses: actions/checkout@v4
+      - name: Set image tag
+        id: tag
+        run: |
+          if [[ "${{ github.ref_type }}" == "tag" ]]; then
+            echo "value=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=ci" >> "$GITHUB_OUTPUT"
+          fi
       - name: Build Docker image
-        run: docker build -t predictive-maintenance-copilot:ci .
+        run: docker build -t predictive-maintenance-copilot:${{ steps.tag.outputs.value }} .

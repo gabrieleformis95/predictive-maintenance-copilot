@@ -45,7 +45,7 @@ def cmapss_dir(tmp_path):
         rows = []
         for u in range(1, n_units + 1):
             for c in range(1, cycles + 1):
-                rows.append([u, c] + rng.normal(size=24).tolist())
+                rows.append([u, c, *rng.normal(size=24).tolist()])
         return pd.DataFrame(rows, columns=COLUMN_NAMES)
 
     _make_df(3, 50).to_csv(data_dir / "train_FD001.txt", sep=" ", header=False, index=False)
