@@ -12,7 +12,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     LLM_MODEL=llama-3.3-70b-versatile \
     API_BASE_URL=http://localhost:8000 \
     DATA_RAW_DIR=/home/app/data/raw \
-    CHECKPOINT_PATH=/home/app/checkpoints/autoencoder_FD001.pt
+    CHECKPOINT_PATH=/home/app/checkpoints/autoencoder_FD001.pt \
+    RAG_ENABLED=false
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \

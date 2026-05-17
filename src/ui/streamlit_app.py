@@ -25,6 +25,7 @@ import streamlit as st
 import torch
 
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
+RAG_ENABLED = os.getenv("RAG_ENABLED", "true").lower() != "false"
 
 SENSORS_TO_PLOT = ["sensor_2", "sensor_3", "sensor_4", "sensor_7", "sensor_11", "sensor_15"]
 
@@ -224,7 +225,12 @@ else:
     _, _, _, _, window_size, _ = _load_resources()
     worst_window = scaled_values[worst_idx : worst_idx + window_size]
 
-    if st.button("Generate LLM alert for worst window", type="primary"):
+    if not RAG_ENABLED:
+        st.info(
+            "LLM explanation with RAG is disabled in this deployment. "
+            "Clone the repo and run locally for the full pipeline — see README for setup."
+        )
+    elif st.button("Generate LLM alert for worst window", type="primary"):
         with st.spinner("Calling LLM via RAG pipeline..."):
             result = _fetch_alert(worst_window, feature_columns)
 
