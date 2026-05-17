@@ -1,6 +1,19 @@
 #!/bin/bash
 set -e
 
+DATA_DIR="data/raw/CMAPSSData"
+if [ ! -f "${DATA_DIR}/train_FD001.txt" ]; then
+    echo "Downloading C-MAPSS dataset from HF Hub..."
+    python - <<'EOF'
+from huggingface_hub import snapshot_download
+snapshot_download(
+    repo_id="gabrieleformis/cmapss-dataset",
+    repo_type="dataset",
+    local_dir="data/raw/CMAPSSData",
+)
+EOF
+fi
+
 CKPT="checkpoints/autoencoder_FD001.pt"
 if [ ! -f "$CKPT" ]; then
     echo "Checkpoint not found. Training model..."
