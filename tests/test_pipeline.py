@@ -333,13 +333,15 @@ def test_explain_anomaly_anomalous_returns_alert():
     window = np.ones((30, 3), dtype=np.float32)
     mock_model = MagicMock()
     mock_model.return_value = torch.zeros(1, 30, 3)
-    raw = json.dumps({
-        "severity": "warning",
-        "probable_cause": "High reconstruction error.",
-        "recommended_action": "Inspect equipment.",
-        "affected_sensors": ["s1"],
-        "citations": [],
-    })
+    raw = json.dumps(
+        {
+            "severity": "warning",
+            "probable_cause": "High reconstruction error.",
+            "recommended_action": "Inspect equipment.",
+            "affected_sensors": ["s1"],
+            "citations": [],
+        }
+    )
     with (
         patch("src.pipeline._load_model", return_value=(mock_model, {})),
         patch("src.pipeline.retrieve", return_value=[]),

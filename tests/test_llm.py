@@ -307,7 +307,7 @@ def test_parse_json_lenient_strips_markdown_fences():
     WHEN parse_json_lenient is called.
     THEN the fences are stripped and the correct dict is returned.
     """
-    assert parse_json_lenient("```json\n{\"key\": 2}\n```") == {"key": 2}
+    assert parse_json_lenient('```json\n{"key": 2}\n```') == {"key": 2}
 
 
 def test_parse_json_lenient_strips_plain_fences():
@@ -315,4 +315,4 @@ def test_parse_json_lenient_strips_plain_fences():
     WHEN parse_json_lenient is called.
     THEN the fences are stripped and the correct dict is returned.
     """
-    assert parse_json_lenient("```\n{\"key\": 3}\n```") == {"key": 3}
+    assert parse_json_lenient('```\n{"key": 3}\n```') == {"key": 3}
