@@ -2,7 +2,7 @@
 # Streamlit on 7860 (public), FastAPI on 8000 (internal).
 # Set GROQ_API_KEY as a Space secret.
 
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -27,7 +27,6 @@ COPY --chown=app:app pyproject.toml ./
 COPY --chown=app:app src ./src
 RUN pip install --user --no-cache-dir .
 
-COPY --chown=app:app data/raw/CMAPSSData ./data/raw/CMAPSSData
 COPY --chown=app:app scripts ./scripts
 
 RUN chmod +x scripts/start.sh
