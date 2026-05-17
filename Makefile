@@ -17,6 +17,7 @@ download-data: ## Download NASA C-MAPSS dataset
 
 ingest-manuals: ## Build vector index from PDFs in data/manuals/
 	$(PYTHON) -m src.rag.ingestion --manuals-dir data/manuals --persist-dir chroma_db
+	rm -rf data/bm25_index
 
 train: ## Train LSTM autoencoder, log to MLflow
 	$(PYTHON) -m scripts.train --subset FD001 --epochs 50

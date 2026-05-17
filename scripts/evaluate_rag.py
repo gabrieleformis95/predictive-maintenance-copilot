@@ -70,9 +70,6 @@ def main(
     from src.config import settings
     from src.llm import get_llm_client
 
-    if not settings.groq_api_key:
-        raise RuntimeError("GROQ_API_KEY not set.")
-
     out_dir.mkdir(parents=True, exist_ok=True)
 
     golden = json.loads(golden_path.read_text())
@@ -101,6 +98,9 @@ def main(
     if not questions:
         logger.error("No questions evaluated. Is ChromaDB populated? Run `make ingest-manuals`.")
         raise typer.Exit(1)
+
+    if not settings.groq_api_key:
+        raise RuntimeError("GROQ_API_KEY not set.")
 
     async_client = AsyncOpenAI(
         api_key=settings.groq_api_key,

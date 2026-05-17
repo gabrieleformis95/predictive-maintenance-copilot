@@ -46,6 +46,7 @@ checkpoints/
 # Vector store
 chroma_db/
 *.chroma
+data/bm25_index/
 
 # MLflow
 mlruns/

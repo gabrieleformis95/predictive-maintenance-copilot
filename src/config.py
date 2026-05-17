@@ -46,6 +46,7 @@ class Settings(BaseSettings):
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     chroma_persist_dir: Path = PROJECT_ROOT / "chroma_db"
     collection_name: str = "industrial_manuals"
+    bm25_index_dir: Path = PROJECT_ROOT / "data" / "bm25_index"
 
     # --- Paths ---
     data_raw_dir: Path = PROJECT_ROOT / "data" / "raw"

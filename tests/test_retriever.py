@@ -130,17 +130,24 @@ def _make_state() -> _RetrieverState:
     ]
     mock_collection = MagicMock()
     mock_collection.query.return_value = {"ids": [ids]}
+    mock_collection.get.return_value = {
+        "ids": ids,
+        "documents": texts,
+        "metadatas": meta,
+    }
     mock_embed = MagicMock()
     mock_embed.encode.return_value = np.zeros(384)
     mock_bm25 = MagicMock()
-    mock_bm25.get_scores.return_value = np.array([0.9, 0.5, 0.3])
+    # bm25s.retrieve returns (results_indices, scores), shape (n_queries, k)
+    mock_bm25.retrieve.return_value = (
+        np.array([[0, 1, 2]]),
+        np.array([[0.9, 0.5, 0.3]]),
+    )
     return _RetrieverState(
         collection=mock_collection,
         embed_model=mock_embed,
         bm25=mock_bm25,
         all_ids=ids,
-        all_texts=texts,
-        all_meta=meta,
     )
 
 
